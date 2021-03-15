@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: user-api
+  datasource:
+    url: jdbc:mysql://39.98.38.8:3306/imooc-security?characterEncoding=utf8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+server:
+  ssl:
+    key-store: classpath:Usersthx_bDesktopSpringCloudSecurityuser-apisrcmainresourcesxueqian.key
+    key-store-password: 123456
+    key-password: 123456
