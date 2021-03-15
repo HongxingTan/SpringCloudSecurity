@@ -1,6 +1,7 @@
 package com.alitantan001.security.user;
 
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
@@ -22,9 +23,25 @@ public class User {
 
     private String password;
 
+    private String permissions;
+
     public UserInfo buildInfo() {
         UserInfo info = new UserInfo();
         BeanUtils.copyProperties(this, info);
         return info;
+    }
+
+    public boolean hasPermission(String method) {
+
+        boolean result = false;
+
+        if (StringUtils.equalsIgnoreCase("get", method)) {
+            result = StringUtils.contains(permissions, "r");
+        } else {
+            result = StringUtils.contains(permissions, "w");
+        }
+
+        return result;
+
     }
 }

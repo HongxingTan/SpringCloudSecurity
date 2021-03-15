@@ -1,5 +1,6 @@
 package com.alitantan001.security.config;
 
+import com.alitantan001.security.filter.AclInterceptor;
 import com.alitantan001.security.filter.AuditLogIntercepter;
 import com.alitantan001.security.log.AuditLog;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,13 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Autowired
     private AuditLogIntercepter auditLogIntercepter;
 
+    @Autowired
+    private AclInterceptor aclInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(auditLogIntercepter);
+        registry.addInterceptor(aclInterceptor);
     }
 
     @Bean

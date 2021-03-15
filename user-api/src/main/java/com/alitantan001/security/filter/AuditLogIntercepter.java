@@ -20,6 +20,8 @@ public class AuditLogIntercepter extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
+        System.out.println(3);
+
         AuditLog auditLog = new AuditLog();
 
         auditLog.setMethod(request.getMethod());
