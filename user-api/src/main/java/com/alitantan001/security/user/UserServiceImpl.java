@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService {
     public List<UserInfo> query(String name) {
         return null;
     }
+
+    @Override
+    public UserInfo login(UserInfo user) {
+        return null;
+    }
 }

@@ -1,12 +1,11 @@
 package com.alitantan001.security.user;
 
-import com.mysql.cj.PreparedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -15,6 +14,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/login")
+    public void login( @Validated UserInfo user, HttpServletRequest request) throws IOException{
+        UserInfo info = userService.login(user);
+        request.getSession().setAttribute("user", info);
+    }
 
     @PostMapping
     public UserInfo create(@RequestBody @Validated UserInfo user) {
