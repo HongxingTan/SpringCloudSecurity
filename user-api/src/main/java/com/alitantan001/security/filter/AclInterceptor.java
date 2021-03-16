@@ -1,6 +1,7 @@
 package com.alitantan001.security.filter;
 
 import com.alitantan001.security.user.User;
+import com.alitantan001.security.user.UserInfo;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class AclInterceptor extends HandlerInterceptorAdapter {
         boolean result = true;
 
         if(!ArrayUtils.contains(permitUrls, request.getRequestURI())){
-            User user = (User) request.getAttribute("user");
+            UserInfo user = (UserInfo) request.getSession().getAttribute("user");
 
             if (user == null) {
                 response.setContentType("text/plain");
